@@ -1,5 +1,27 @@
 workspace(name="bazel_python_monorepo")
 
+# Docker support.
+
+git_repository(
+    name = "io_bazel_rules_docker",
+    remote = "https://github.com/bazelbuild/rules_docker.git",
+    tag = "v0.3.0",
+)
+
+load(
+    "@io_bazel_rules_docker//container:container.bzl",
+    container_repositories = "repositories",
+)
+
+container_repositories()
+
+load(
+    "@io_bazel_rules_docker//python:image.bzl",
+    py_image_repositories = "repositories",
+)
+
+py_image_repositories()
+
 # Python support.
 
 git_repository(

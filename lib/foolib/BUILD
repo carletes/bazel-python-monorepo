@@ -5,6 +5,11 @@ load(
     "py_test",
 )
 
+load(
+    "@io_bazel_rules_docker//python:image.bzl",
+    "py_image",
+)
+
 load("@pip_foolib//:requirements.bzl", foolib_requirement = "requirement")
 
 py_library(
@@ -17,13 +22,16 @@ py_library(
     ],
 )
 
-py_binary(
-    name = "hello_foo",
+py_image(
+    name = "hello",
+    srcs = [
+        "hello-foo.py",
+    ],
     deps = [
         ":foolib",
     ],
-    srcs = [
-        "hello-foo.py",
+    imports = [
+        "..",
     ],
     main = "hello-foo.py",
 )
