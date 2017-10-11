@@ -1,5 +1,7 @@
 import requests
 
+from barlib import num_cpus
+
 
 __all__ = [
     "url_content",
@@ -7,4 +9,4 @@ __all__ = [
 
 
 def url_content(url):
-    return requests.get(url).content
+    return requests.get(url).content, num_cpus()

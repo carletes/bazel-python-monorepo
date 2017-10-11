@@ -46,3 +46,10 @@ pip_import(
 )
 load("@pip_foolib//:requirements.bzl", foolib_pip_install = "pip_install")
 foolib_pip_install()
+
+pip_import(
+    name = "pip_barlib",
+    requirements = "//lib/barlib:requirements.txt",
+)
+load("@pip_barlib//:requirements.bzl", barlib_pip_install = "pip_install")
+barlib_pip_install()

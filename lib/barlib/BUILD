@@ -12,29 +12,28 @@ load(
     "py_image",
 )
 
-load("@pip_foolib//:requirements.bzl", "requirement")
+load("@pip_barlib//:requirements.bzl", requirement = "requirement")
 
 py_library(
-    name = "foolib",
+    name = "barlib",
     srcs = [
         "__init__.py",
     ],
     deps = [
-        requirement("requests"),
-        "//lib/barlib:barlib",
+        requirement("psutil"),
     ],
 )
 
 py_image(
     name = "hello",
     srcs = [
-        "hello-foo.py",
+        "hello-bar.py",
     ],
     deps = [
-        ":foolib",
+        ":barlib",
     ],
     imports = [
         "..",
     ],
-    main = "hello-foo.py",
+    main = "hello-bar.py",
 )
